@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
 import Service from "./Service";
-import styles from "./styles";
 
 const Header = ({ avatar, name }) => {
   return (
@@ -56,3 +55,30 @@ export default function Home() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f9fbfc",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 24,
+  },
+  headerLeft: {
+    flexDirection: "row",
+  },
+  salutation: {
+    fontSize: 16,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  text: {
+    marginLeft: 8,
+    justifyContent: "space-between",
+  },
+});
