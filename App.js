@@ -1,14 +1,17 @@
 import React from "react";
 import { StyleSheet, View, StatusBar } from "react-native";
-import Home from "./components/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigator from "./components/Navigator";
 import theme from "./theme";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor={theme.background} barStyle="dark-content" />
-      <Home />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <StatusBar backgroundColor={theme.background} barStyle="dark-content" />
+        <Navigator />
+      </View>
+    </NavigationContainer>
   );
 }
 
