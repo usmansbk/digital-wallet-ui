@@ -1,12 +1,26 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, Text, Dimensions } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  Image,
+} from "react-native";
 
 const { width } = Dimensions.get("window");
 
 const Card = ({ currency, amount, number, owner, exp, color }) => (
   <View style={[styles.card, { backgroundColor: color }]}>
     <View>
-      <Text style={[styles.textWhite]}>Current Balance</Text>
+      <View style={styles.header}>
+        <Text style={[styles.textWhite]}>Current Balance</Text>
+        <Image
+          resizeMode="contain"
+          source={require("../../assets/mastercard.png")}
+          style={styles.cardIcon}
+        />
+      </View>
       <View style={styles.cash}>
         <Text style={[styles.textWhite, styles.currency]}>{currency}</Text>
         <Text style={[styles.textWhite, styles.amount]}>{amount}</Text>
@@ -27,7 +41,12 @@ const Card = ({ currency, amount, number, owner, exp, color }) => (
 
 const CardList = ({ cards = [] }) => {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} pagingEnabled>
+    <ScrollView
+      snapToInterval={width}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      pagingEnabled
+    >
       {cards.map(({ id, ...rest }) => (
         <Card key={id} {...rest} />
       ))}
@@ -77,6 +96,15 @@ const styles = StyleSheet.create({
   },
   caption: {
     fontSize: 12,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  cardIcon: {
+    height: 20,
+    width: 30,
   },
 });
 
