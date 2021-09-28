@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import theme from "../../theme";
 
@@ -8,12 +8,14 @@ const Service = ({ services = [] }) => (
     <Text style={styles.title}>Service</Text>
     <View style={styles.services}>
       {services.map(({ id, name, icon, color }) => (
-        <View key={id}>
-          <View style={[styles.icon, { backgroundColor: color }]}>
-            <Ionicons name={icon} color="white" size={30} />
+        <TouchableWithoutFeedback onPress={() => null} key={id}>
+          <View>
+            <View style={[styles.icon, { backgroundColor: color }]}>
+              <Ionicons name={icon} color="white" size={30} />
+            </View>
+            <Text style={styles.name}>{name}</Text>
           </View>
-          <Text style={styles.name}>{name}</Text>
-        </View>
+        </TouchableWithoutFeedback>
       ))}
     </View>
   </View>
