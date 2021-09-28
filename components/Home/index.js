@@ -1,4 +1,5 @@
-import React from "react";
+import { useScrollToTop } from "@react-navigation/native";
+import React, { useRef } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
@@ -110,10 +111,13 @@ export default function Home() {
     },
   ];
 
+  const ref = useRef(null);
+  useScrollToTop(ref);
+
   return (
     <View style={styles.container}>
       <Header salutation={salutation} name={name} avatar={picture} />
-      <ScrollView>
+      <ScrollView ref={ref}>
         <CardList cards={cards} />
         <Service services={services} />
         <Transaction transactions={transactions} />
