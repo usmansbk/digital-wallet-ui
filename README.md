@@ -6,7 +6,7 @@
 
 ## Live Link
 
-Use the Expo Go app to test the app - [Link](https://expo.dev/@usmansbk/digital-wallet-ui)
+Use the [Expo Go client](https://expo.dev/client) to test the app - [Link](https://expo.dev/@usmansbk/digital-wallet-ui)
 
 ## Built With
 
