@@ -1,25 +1,9 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
+import Service from "./Service";
 import styles from "./styles";
-
-const Service = ({ services = [] }) => (
-  <View style={styles.serviceContainer}>
-    <Text style={styles.serviceTitle}>Service</Text>
-    <View style={styles.services}>
-      {services.map(({ id, name, icon, color }) => (
-        <TouchableOpacity key={id} style={styles.serviceItem}>
-          <View style={[styles.serviceIcon, { backgroundColor: color }]}>
-            <Ionicons name={icon} color="white" size={40} />
-          </View>
-          <Text style={styles.serviceName}>{name}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-  </View>
-);
 
 const Header = ({ avatar, name }) => {
   return (
