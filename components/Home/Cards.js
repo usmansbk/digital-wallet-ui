@@ -45,6 +45,7 @@ const CardList = ({ cards = [] }) => {
   return (
     <ScrollView
       horizontal
+      snapToInterval={width}
       showsHorizontalScrollIndicator={false}
       pagingEnabled
       contentContainerStyle={styles.contentContainerStyle}
