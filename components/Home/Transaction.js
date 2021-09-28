@@ -1,24 +1,27 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import theme from "../../theme";
 
-const Icon = ({ color, icon }) => (
-  <View style={[{ backgroundColor: color }, styles.iconBox]}>
-    <View style={styles.icon}>
-      <FontAwesome5 name={icon} size={24} color="white" />
+const Icon = ({ color, icon, img, size = 24 }) =>
+  img ? (
+    <Image source={img} style={[styles.iconBox]} />
+  ) : (
+    <View style={[{ backgroundColor: color }, styles.iconBox]}>
+      <View style={styles.icon}>
+        <FontAwesome5 name={icon} size={size} color="white" />
+      </View>
     </View>
-  </View>
-);
+  );
 
 const Transaction = ({ transactions = [] }) => (
   <View style={styles.container}>
     <Text style={styles.sectionTitle}>Recent Transaction</Text>
     <View>
-      {transactions.map(({ id, title, subtitle, amount, color, icon }) => (
+      {transactions.map(({ id, title, subtitle, amount, color, icon, img }) => (
         <TouchableOpacity key={id} style={styles.itemContainer}>
           <View style={styles.itemLeft}>
-            <Icon icon={icon} color={color} />
+            <Icon icon={icon} color={color} img={img} />
             <View>
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.subtitle}>{subtitle}</Text>

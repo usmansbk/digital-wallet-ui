@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
 import Service from "./Service";
@@ -68,19 +68,21 @@ export default function Home() {
     },
     {
       id: "figma",
-      title: "Figma",
+      title: "Uplabs",
       subtitle: "Payment Received",
       amount: "$137",
-      color: "#9d56f7",
-      icon: "figma",
+      color: "#93a7e7",
+      img: require("../../assets/uplabs.jpg"),
     },
   ];
 
   return (
     <View style={styles.container}>
       <Header name={name} avatar={picture} />
-      <Service services={services} />
-      <Transaction transactions={transactions} />
+      <ScrollView>
+        <Service services={services} />
+        <Transaction transactions={transactions} />
+      </ScrollView>
     </View>
   );
 }
