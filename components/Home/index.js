@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
 import Service from "./Service";
+import Transaction from "./Transaction";
 
 const Header = ({ avatar, name }) => {
   return (
@@ -52,6 +53,7 @@ export default function Home() {
     <View style={styles.container}>
       <Header name={name} avatar={picture} />
       <Service services={services} />
+      <Transaction />
     </View>
   );
 }

@@ -8,9 +8,9 @@ const Service = ({ services = [] }) => (
     <Text style={styles.title}>Service</Text>
     <View style={styles.services}>
       {services.map(({ id, name, icon, color }) => (
-        <TouchableOpacity key={id} style={styles.item}>
+        <TouchableOpacity key={id}>
           <View style={[styles.icon, { backgroundColor: color }]}>
-            <Ionicons name={icon} color="white" size={40} />
+            <Ionicons name={icon} color="white" size={30} />
           </View>
           <Text style={styles.name}>{name}</Text>
         </TouchableOpacity>
@@ -21,7 +21,7 @@ const Service = ({ services = [] }) => (
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 16,
+    marginHorizontal: 24,
   },
   title: {
     fontWeight: "bold",
@@ -33,11 +33,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  item: {
-    width: 80,
-    height: 80,
-  },
   icon: {
+    width: 60,
+    height: 60,
     padding: 16,
     borderRadius: 16,
     marginBottom: 16,
