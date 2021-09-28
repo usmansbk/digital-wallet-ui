@@ -2,16 +2,17 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Avatar from "../common/Avatar";
 import IconButton from "../common/IconButton";
+import CardList from "./Cards";
 import Service from "./Service";
 import Transaction from "./Transaction";
 
-const Header = ({ avatar, name }) => {
+const Header = ({ avatar, name, salutation }) => {
   return (
     <View style={styles.header}>
       <View style={styles.headerLeft}>
         <Avatar uri={avatar} />
         <View style={styles.text}>
-          <Text style={styles.salutation}>Hello</Text>
+          <Text style={styles.salutation}>{salutation}</Text>
           <Text style={styles.name}>{name}</Text>
         </View>
       </View>
@@ -21,6 +22,7 @@ const Header = ({ avatar, name }) => {
 };
 
 export default function Home() {
+  const salutation = "Hello";
   const name = "One Achmad";
   const picture = "https://i.pravatar.cc/300";
   const services = [
@@ -75,11 +77,44 @@ export default function Home() {
       img: require("../../assets/uplabs.jpg"),
     },
   ];
+  const cards = [
+    {
+      id: "card-1",
+      type: "master-card",
+      currency: "USD",
+      amount: 248.75,
+      owner: "One Achmad",
+      exp: "10/28",
+      number: "****  ****  ****  1234",
+      color: "#fbb245",
+    },
+    {
+      id: "card-2",
+      type: "master-card",
+      currency: "USD",
+      amount: 248.75,
+      owner: "One Achmad",
+      exp: "10/28",
+      number: "****  ****  ****  1234",
+      color: "#4965fb",
+    },
+    {
+      id: "card-3",
+      type: "visa",
+      currency: "USD",
+      amount: 248.75,
+      owner: "One Achmad",
+      exp: "10/28",
+      number: "****  ****  ****  1234",
+      color: "#40b7fb",
+    },
+  ];
 
   return (
     <View style={styles.container}>
-      <Header name={name} avatar={picture} />
+      <Header salutation={salutation} name={name} avatar={picture} />
       <ScrollView>
+        <CardList cards={cards} />
         <Service services={services} />
         <Transaction transactions={transactions} />
       </ScrollView>
