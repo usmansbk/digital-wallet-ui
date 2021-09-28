@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import theme from "../../theme";
 
@@ -8,12 +8,12 @@ const Service = ({ services = [] }) => (
     <Text style={styles.title}>Service</Text>
     <View style={styles.services}>
       {services.map(({ id, name, icon, color }) => (
-        <TouchableOpacity key={id}>
+        <View key={id}>
           <View style={[styles.icon, { backgroundColor: color }]}>
             <Ionicons name={icon} color="white" size={30} />
           </View>
           <Text style={styles.name}>{name}</Text>
-        </TouchableOpacity>
+        </View>
       ))}
     </View>
   </View>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     justifyContent: "center",
     alignItems: "center",
+    elevation: 1,
   },
   name: {
     textAlign: "center",

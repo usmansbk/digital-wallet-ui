@@ -49,11 +49,32 @@ export default function Home() {
       color: "#50b350",
     },
   ];
+  const transactions = [
+    {
+      id: "dribbble",
+      title: "Dribbble",
+      subtitle: "Payment Received",
+      amount: "$245",
+    },
+    {
+      id: "google-wallet",
+      title: "Google Wallet",
+      subtitle: "Payment via wallet can be done",
+      amount: "$180",
+    },
+    {
+      id: "uplabs",
+      title: "Uplabs",
+      subtitle: "Payment Received",
+      amount: "$137",
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <Header name={name} avatar={picture} />
       <Service services={services} />
-      <Transaction />
+      <Transaction transactions={transactions} />
     </View>
   );
 }
