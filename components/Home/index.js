@@ -55,18 +55,24 @@ export default function Home() {
       title: "Dribbble",
       subtitle: "Payment Received",
       amount: "$245",
+      color: "#fd5c94",
+      icon: "dribbble",
     },
     {
       id: "google-wallet",
       title: "Google Wallet",
       subtitle: "Payment via wallet can be done",
       amount: "$180",
+      color: "#64af25",
+      icon: "google-wallet",
     },
     {
-      id: "uplabs",
-      title: "Uplabs",
+      id: "figma",
+      title: "Figma",
       subtitle: "Payment Received",
       amount: "$137",
+      color: "#9d56f7",
+      icon: "figma",
     },
   ];
 
