@@ -127,8 +127,8 @@ export default function Home() {
         accuracy: Location.Accuracy.Lowest,
       });
       const matches = await Location.reverseGeocodeAsync(location.coords);
-      const address = matches[0];
-      setLocation(`${address.city}, ${address.country}`);
+      const { city, country } = matches[0];
+      setLocation(`${city}, ${country}`);
     })();
   }, []);
 
