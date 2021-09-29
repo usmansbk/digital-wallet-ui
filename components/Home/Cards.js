@@ -9,32 +9,31 @@ import {
 } from "react-native";
 
 const { width } = Dimensions.get("window");
+const CARD_SIZE = width - width * 0.2;
 
 const Card = ({ currency, amount, number, owner, exp, color }) => (
   <View style={styles.cardContainer}>
     <View style={[styles.card, { backgroundColor: color }]}>
+      <View style={styles.header}>
+        <Text style={[styles.textWhite]}>Current Balance</Text>
+        <Image
+          resizeMode="contain"
+          source={require("../../assets/mastercard.png")}
+          style={styles.cardIcon}
+        />
+      </View>
+      <View style={styles.cash}>
+        <Text style={[styles.textWhite, styles.currency]}>{currency}</Text>
+        <Text style={[styles.textWhite, styles.amount]}>{amount}</Text>
+      </View>
       <View>
-        <View style={styles.header}>
-          <Text style={[styles.textWhite]}>Current Balance</Text>
-          <Image
-            resizeMode="contain"
-            source={require("../../assets/mastercard.png")}
-            style={styles.cardIcon}
-          />
-        </View>
-        <View style={styles.cash}>
-          <Text style={[styles.textWhite, styles.currency]}>{currency}</Text>
-          <Text style={[styles.textWhite, styles.amount]}>{amount}</Text>
-        </View>
-        <View>
-          <Text style={[styles.textWhite, styles.number]}>{number}</Text>
-        </View>
-        <View style={styles.footer}>
-          <Text style={[styles.textWhite, styles.owner]}>{owner}</Text>
-          <View style={styles.exp}>
-            <Text style={[styles.textWhite, styles.caption]}>Exp Date</Text>
-            <Text style={[styles.textWhite]}>{exp}</Text>
-          </View>
+        <Text style={[styles.textWhite, styles.number]}>{number}</Text>
+      </View>
+      <View style={styles.footer}>
+        <Text style={[styles.textWhite, styles.owner]}>{owner}</Text>
+        <View style={styles.exp}>
+          <Text style={[styles.textWhite, styles.caption]}>Exp Date</Text>
+          <Text style={[styles.textWhite]}>{exp}</Text>
         </View>
       </View>
     </View>
@@ -45,9 +44,8 @@ const CardList = ({ cards = [] }) => {
   return (
     <ScrollView
       horizontal
-      snapToInterval={width}
+      snapToInterval={CARD_SIZE}
       showsHorizontalScrollIndicator={false}
-      pagingEnabled
       contentContainerStyle={styles.contentContainerStyle}
     >
       {cards.map(({ id, ...rest }) => (
@@ -59,15 +57,16 @@ const CardList = ({ cards = [] }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width,
     padding: 16,
+    paddingHorizontal: 13,
     alignItems: "center",
+    justifyContent: "center",
   },
   card: {
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    width: "100%",
+    width: CARD_SIZE,
     elevation: 1,
   },
   contentContainerStyle: {},
