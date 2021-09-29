@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -6,14 +6,25 @@ import {
   Text,
   Dimensions,
   Image,
+  Animated,
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-const CARD_SIZE = width - width * 0.2;
+const CARD_SIZE = width - 48;
 
-const Card = ({ currency, amount, number, owner, exp, color }) => (
-  <View style={styles.cardContainer}>
-    <View style={[styles.card, { backgroundColor: color }]}>
+const Card = ({
+  currency,
+  amount,
+  number,
+  owner,
+  exp,
+  color,
+  animatedStyle,
+}) => (
+  <View style={[styles.cardContainer]}>
+    <Animated.View
+      style={[styles.card, { backgroundColor: color }, animatedStyle]}
+    >
       <View style={styles.header}>
         <Text style={[styles.textWhite]}>Current Balance</Text>
         <Image
@@ -36,20 +47,52 @@ const Card = ({ currency, amount, number, owner, exp, color }) => (
           <Text style={[styles.textWhite]}>{exp}</Text>
         </View>
       </View>
-    </View>
+    </Animated.View>
   </View>
 );
 
 const CardList = ({ cards = [] }) => {
+  const scrollX = useRef(new Animated.Value(0)).current;
   return (
     <ScrollView
       horizontal
       snapToInterval={CARD_SIZE}
+      pagingEnabled
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.contentContainerStyle}
+      onScroll={Animated.event(
+        [
+          {
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX,
+              },
+            },
+          },
+        ],
+        { useNativeDriver: false }
+      )}
     >
-      {cards.map(({ id, ...rest }) => (
-        <Card key={id} {...rest} />
+      {cards.map(({ id, ...rest }, index) => (
+        <Card
+          key={id}
+          {...rest}
+          animatedStyle={{
+            transform: [
+              {
+                scale: scrollX.interpolate({
+                  inputRange: [
+                    CARD_SIZE * (index - 1),
+                    CARD_SIZE * index,
+                    CARD_SIZE * (index + 1),
+                  ],
+                  outputRange: [0.9, 1, 0.9],
+                  extrapolate: "clamp",
+                }),
+              },
+            ],
+          }}
+        />
       ))}
     </ScrollView>
   );
@@ -57,8 +100,6 @@ const CardList = ({ cards = [] }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    padding: 16,
-    paddingHorizontal: 13,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -69,7 +110,11 @@ const styles = StyleSheet.create({
     width: CARD_SIZE,
     elevation: 1,
   },
-  contentContainerStyle: {},
+  contentContainerStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
   textWhite: {
     color: "white",
   },
